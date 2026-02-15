@@ -1,4 +1,4 @@
-pagina,titulo,conteudo,status,id_doc,remetente_extraido,destinatario_extraido,data_extraida,tipo_doc_extraido
+pagina,titulo,conteudo,status,id_doc,remetente,destinatario,data,tipo_doc
 1,(CO) Consulta Correspondência\CO_0001,"COD_TIPO: CO
 NUM_ANTDOC: 1
 PAGINAÇÃO: 

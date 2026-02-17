@@ -29,7 +29,7 @@
             font-family: 'Courier Prime', 'Courier New', monospace;
             background: linear-gradient(135deg, var(--bege) 0%, var(--branco) 100%);
             background-image: 
-                linear-gradient(rgba(217, 194, 173, 0.45), rgba(255, 255, 255, 0.50)),
+                linear-gradient(rgba(217, 194, 173, 0.55), rgba(255, 255, 255, 0.65)),
                 url('assets/Background.png');
             background-size: cover;
             background-position: center;
@@ -106,7 +106,7 @@
 
         .intro p {
             font-size: 1.1rem;
-            color: #3E3E3E;
+            color: var(--cinza);
             margin-bottom: 1rem;
         }
 
@@ -297,8 +297,8 @@
                 de Cândido Portinari, um dos mais importantes pintores brasileiros do século XX.
             </p>
             <p>
-                Através de visualizações interativas, mapeamos a extensa rede de comunicação do artista 
-                e identificamos padrões temporais em suas correspondências ao longo de décadas.
+                Através de <span class="highlight">três visualizações interativas</span>, mapeamos a extensa rede de comunicação do artista, 
+                identificamos padrões temporais e revelamos os principais interlocutores em suas correspondências ao longo de décadas.
             </p>
         </div>
 
@@ -357,6 +357,35 @@
                     </div>
                     <a href="grafo_correspondencias.html" class="card-button" target="_blank" rel="noopener noreferrer">
                         Visualizar Rede →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: Dashboard de Remetentes -->
+            <div class="viz-card">
+                <div class="card-header">
+                    <span class="card-number">03</span>
+                    <h2 class="card-title">Dashboard de Remetentes</h2>
+                    <p class="card-subtitle">Top 15 Remetentes por Período</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Explore os principais remetentes que enviaram correspondências para Portinari 
+                        através de um dashboard interativo com filtro temporal.
+                    </p>
+                    <ul class="features-list">
+                        <li>Seleção de intervalo temporal na linha do tempo</li>
+                        <li>Ranking dinâmico dos Top 15 remetentes</li>
+                        <li>Volume de cartas recebidas por ano</li>
+                        <li>Atualização automática ao selecionar períodos</li>
+                    </ul>
+                    <div class="tech-badges">
+                        <span class="badge">Altair</span>
+                        <span class="badge">Brush Selection</span>
+                        <span class="badge">Dinâmico</span>
+                    </div>
+                    <a href="dashboard_remetentes_portinari.html" class="card-button" target="_blank" rel="noopener noreferrer">
+                        Acessar Dashboard →
                     </a>
                 </div>
             </div>

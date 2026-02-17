@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <style>
+    /* O segredo está aqui: o PAI centraliza o FILHO */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* O #vis apenas contém o gráfico */
     #vis.vega-embed {
-      width: 100%;
       display: flex;
     }
 

@@ -17,6 +17,7 @@ Este projeto realiza uma análise exploratória das correspondências histórica
 - **Python 3.9+**
 - **Pandas** - manipulação e análise de dados
 - **Altair** - visualizações interativas
+- **NetworkX & Pyvis** - análise e visualização de redes
 - **Selenium & Playwright** - web scraping automatizado
 - **Jupyter Notebook** - desenvolvimento e documentação
 
@@ -30,8 +31,12 @@ Este projeto realiza uma análise exploratória das correspondências histórica
 ├── Data/
 │   ├── dados_finais.csv        # Dataset consolidado e tratado
 │   └── dados_*.csv             # Datasets intermediários
-└── Images/
-    └── Paleta.png              # Paleta de cores do projeto
+├── Images/
+│   └── Paleta.png              # Paleta de cores do projeto
+└── Views/
+    ├── index.html              # Página principal das visualizações
+    ├── grafo_correspondencias.html
+    └── Portinari_Text_Explorer.html
 ```
 
 ## Pipeline de Dados
@@ -56,10 +61,10 @@ Este projeto realiza uma análise exploratória das correspondências histórica
 
 ```bash
 # Clone o repositório
-git clone [https://github.com/vrsmic/portinari-metadata.git]
+git clone https://github.com/vrsmic/portinari-metadata.git
 
 # Instale as dependências
-pip install pandas altair selenium playwright webdriver-manager
+pip install pandas altair selenium playwright webdriver-manager networkx pyvis
 
 # Execute o notebook principal
 jupyter notebook AV2.ipynb
@@ -70,6 +75,25 @@ jupyter notebook AV2.ipynb
 ## Resultados
 
 O dataset final contém **4.147 correspondências com texto válido**, cobrindo aproximadamente 70% do acervo digitalizado. As análises visuais revelam padrões de comunicação do artista ao longo de sua carreira.
+
+## Visualizações Interativas
+
+O projeto conta com duas visualizações interativas principais, disponíveis online:
+
+### [**Acesse as Visualizações**](https://vrsmic.github.io/portinari-metadata/)
+
+**1. Explorador de Correspondências** - Timeline interativo com múltiplos filtros
+- Busca textual no resumo das correspondências
+- Filtros por remetente e destinatário  
+- Seleção por tipo de documento
+- Visualização temporal dos períodos de comunicação
+
+**2. Grafo de Rede Social** - Mapa de conexões de Portinari
+- Visualização da rede de comunicação entre remetentes e destinatários
+- Identificação de interlocutores centrais
+- Navegação interativa com física de grafos
+
+As visualizações utilizam **Altair (Vega-Lite)** e **Pyvis/NetworkX**, com paleta de cores inspirada nas obras de Portinari.
 
 ## Paleta de Cores
 

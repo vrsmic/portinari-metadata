@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visualizações interativas das correspondências de Cândido Portinari">
+    <title>Portinari em Dados Visualizados</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul: #4F6F8C;
+            --dourado: #BF8821;
+            --bege: #D9C2AD;
+            --vermelho: #A62014;
+            --vinho: #59150E;
+            --cinza: #6E6E6E;
+            --branco: #FFFFFF;
+            --preto: #000000;
+        }
+
+        body {
+            font-family: 'Courier Prime', 'Courier New', monospace;
+            background: linear-gradient(135deg, var(--bege) 0%, var(--branco) 100%);
+            background-image: 
+                linear-gradient(rgba(217, 194, 173, 0.45), rgba(255, 255, 255, 0.50)),
+                url('assets/Background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            color: var(--preto);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--vinho) 0%, var(--vermelho) 100%);
+            color: var(--branco);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-style: italic;
+            opacity: 0.95;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .authors {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Introdução */
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: #3E3E3E;
+            margin-bottom: 1rem;
+        }
+
+        .intro .highlight {
+            color: var(--vermelho);
+            font-weight: bold;
+        }
+
+        /* Grid de cards */
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Card individual */
+        .viz-card {
+            background: var(--branco);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .viz-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--dourado);
+        }
+
+        .card-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--azul) 0%, var(--vinho) 100%);
+            color: var(--branco);
+            position: relative;
+        }
+
+        .card-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 3rem;
+            font-weight: bold;
+            opacity: 0.3;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-subtitle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-description {
+            color: var(--cinza);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--cinza);
+        }
+
+        .features-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .card-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--dourado) 0%, var(--vermelho) 100%);
+            color: var(--branco);
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 100%;
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--vermelho) 0%, var(--dourado) 100%);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--vinho);
+            color: var(--branco);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: var(--dourado);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .viz-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .intro p {
+                font-size: 1rem;
+            }
+
+            .card-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Badges de tecnologia */
+        .tech-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--bege);
+            color: var(--vinho);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Portinari em Dados Visualizados</h1>
+        <p class="subtitle">Exploração Visual das Correspondências de Cândido Portinari</p>
+        <p class="authors">por Micaele Brandão e Mateus Bandeira</p>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <p>
+                Bem-vindo à exploração interativa das <span class="highlight">4.147 correspondências</span> 
+                de Cândido Portinari, um dos mais importantes pintores brasileiros do século XX.
+            </p>
+            <p>
+                Através de visualizações interativas, mapeamos a extensa rede de comunicação do artista 
+                e identificamos padrões temporais em suas correspondências ao longo de décadas.
+            </p>
+        </div>
+
+        <div class="viz-grid">
+            <!-- Card 1: Text Explorer -->
+            <div class="viz-card">
+                <div class="card-header">
+                    <span class="card-number">01</span>
+                    <h2 class="card-title">Explorador de Correspondências</h2>
+                    <p class="card-subtitle">Timeline Interativo com Filtros Múltiplos</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Navegue temporalmente pelas correspondências de Portinari com ferramentas 
+                        avançadas de filtragem e busca textual.
+                    </p>
+                    <ul class="features-list">
+                        <li>Busca em tempo real nos resumos das correspondências</li>
+                        <li>Filtros por remetente e destinatário</li>
+                        <li>Seleção interativa por tipo de documento</li>
+                        <li>Visualização temporal dos períodos de comunicação</li>
+                    </ul>
+                    <div class="tech-badges">
+                        <span class="badge">Altair</span>
+                        <span class="badge">Vega-Lite</span>
+                        <span class="badge">4.147 docs</span>
+                    </div>
+                    <a href="Portinari_Text_Explorer.html" class="card-button" target="_blank" rel="noopener noreferrer">
+                        Explorar Timeline →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: Grafo -->
+            <div class="viz-card">
+                <div class="card-header">
+                    <span class="card-number">02</span>
+                    <h2 class="card-title">Grafo de Rede Social</h2>
+                    <p class="card-subtitle">Mapa de Conexões de Portinari</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Visualize a complexa rede de comunicação entre Portinari, seus interlocutores 
+                        e as conexões entre diferentes personalidades do cenário artístico.
+                    </p>
+                    <ul class="features-list">
+                        <li>Rede interativa com física de grafos</li>
+                        <li>Identificação de interlocutores centrais</li>
+                        <li>Navegação e zoom nos clusters de conexões</li>
+                        <li>427 nós representando pessoas e suas relações</li>
+                    </ul>
+                    <div class="tech-badges">
+                        <span class="badge">NetworkX</span>
+                        <span class="badge">Pyvis</span>
+                        <span class="badge">427 nós</span>
+                    </div>
+                    <a href="grafo_correspondencias.html" class="card-button" target="_blank" rel="noopener noreferrer">
+                        Visualizar Rede →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Trabalho Final de Introdução à Ciência de Dados</p>
+        <p>
+            <a href="https://github.com/vrsmic/portinari-metadata" target="_blank">
+                📂 Repositório GitHub
+            </a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            Dados: <a href="https://www.docvirt.com/docreader.net/DocReader.aspx?bib=coportinari" target="_blank">
+                Projeto Portinari - DocVirt
+            </a>
+        </p>
+    </footer>
+</body>
+</html>

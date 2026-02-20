@@ -4,7 +4,7 @@
 ## Sobre o Projeto
 
 Este projeto realiza uma análise exploratória das correspondências históricas do pintor brasileiro Cândido Portinari através de metadados textuais. Utilizando técnicas de web scraping e ciência de dados, transformamos documentos históricos em insights visuais para facilitar a compreensão da trajetória pessoal e profissional do artista.
-- ![Link das Visualizações Interativas](vrsmic.github.io/portinari-metadata)
+- [Link das Visualizações Interativas](vrsmic.github.io/portinari-metadata)
 
 ## Objetivos
 

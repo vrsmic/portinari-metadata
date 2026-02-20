@@ -15,14 +15,14 @@
         }
 
         :root {
-            --azul: #4F6F8C;
-            --dourado: #BF8821;
-            --bege: #D9C2AD;
-            --vermelho: #A62014;
-            --vinho: #59150E;
-            --cinza: #6E6E6E;
+            --azul: #778A8C;
+            --musgo: #97A6A4;
+            --vermelho: #8C2020;
+            --bege: #D9D4D2;
+            --vinho: #73413D;
             --branco: #FFFFFF;
             --preto: #000000;
+            --cinza: #2f2f2f;
         }
 
         body {
@@ -42,7 +42,7 @@
 
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--vinho) 0%, var(--vermelho) 100%);
+            background: var(--vermelho);
             color: var(--branco);
             padding: 3rem 2rem 2rem;
             text-align: center;
@@ -127,6 +127,7 @@
         .viz-card {
             background: var(--branco);
             border-radius: 12px;
+            border-color: var(--azul);
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
@@ -137,7 +138,7 @@
         .viz-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-            border-color: var(--dourado);
+            border-color: var(--musgo);
         }
 
         .card-header {
@@ -202,7 +203,7 @@
 
         .card-button {
             display: inline-block;
-            background: linear-gradient(135deg, var(--dourado) 0%, var(--vermelho) 100%);
+            background: linear-gradient(135deg, var(--musgo) 0%, var(--vermelho) 100%);
             color: var(--branco);
             padding: 0.9rem 2rem;
             text-decoration: none;
@@ -217,12 +218,12 @@
         .card-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, var(--vermelho) 0%, var(--dourado) 100%);
+            background: linear-gradient(135deg, var(--vermelho) 0%, var(--musgo) 100%);
         }
 
         /* Footer */
         footer {
-            background: var(--vinho);
+            background: var(--vermelho);
             color: var(--branco);
             text-align: center;
             padding: 2rem;
@@ -235,7 +236,7 @@
         }
 
         footer a {
-            color: var(--dourado);
+            color: var(--musgo);
             text-decoration: none;
             font-weight: bold;
         }
@@ -287,7 +288,7 @@
     <header>
         <h1>Portinari em Dados Visualizados</h1>
         <p class="subtitle">Exploração Visual das Correspondências de Cândido Portinari</p>
-        <p class="authors">por Micaele Brandão e Mateus Bandeira</p>
+        <p class="authors">Por Micaele Brandão e Mateus Bandeira</p>
     </header>
 
     <div class="container">
@@ -396,12 +397,7 @@
         <p>Trabalho Final de Introdução à Ciência de Dados</p>
         <p>
             <a href="https://github.com/vrsmic/portinari-metadata" target="_blank">
-                📂 Repositório GitHub
-            </a>
-        </p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">
-            Dados: <a href="https://www.docvirt.com/docreader.net/DocReader.aspx?bib=coportinari" target="_blank">
-                Projeto Portinari - DocVirt
+                Link para Repositório GitHub
             </a>
         </p>
     </footer>

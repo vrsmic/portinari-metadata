@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pessoas-Chave da Rede de Portinari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --azul:         #4b5b5d;
+            --musgo:        #97A6A4;
+            --vermelho:     #8C2020;
+            --bege:         #D9D4D2;
+            --vinho:        #73413D;
+            --branco:       #FFFFFF;
+            --preto:        #000000;
+            --cinza:        #2f2f2f;
+            --vinho-escuro: #5a312e;
+            --bege-claro:   #ece8e6;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background-color: var(--bege);
+            background-image:
+                radial-gradient(ellipse at 15% 55%, rgba(115,65,61,.07) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 20%, rgba(119,138,140,.07) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='.6' fill='%2373413D' opacity='.07'/%3E%3C/svg%3E");
+            color: var(--cinza);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ───── HEADER ───────────────────────────────────────── */
+        header {
+            position: relative;
+            width: 100%;
+            background: var(--vinho);
+            overflow: hidden;
+            padding: 4rem 2rem 2.8rem;
+            text-align: center;
+            box-shadow: 0 4px 28px rgba(90,49,46,.3);
+        }
+
+        /* Subtle circle pattern overlay */
+        header::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='44' fill='none' stroke='%23ffffff' stroke-width='.4' opacity='.1'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23ffffff' stroke-width='.4' opacity='.06'/%3E%3C/svg%3E");
+            background-size: 140px 140px;
+        }
+
+        /* Gradient bottom border */
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent 0%, var(--azul) 20%, var(--bege) 50%,
+                var(--musgo) 80%, transparent 100%);
+        }
+
+        .header-eyebrow {
+            font-family: 'Raleway', sans-serif;
+            font-size: .68rem;
+            font-weight: 500;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--musgo);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.9rem, 4vw, 3.1rem);
+            font-weight: 700;
+            color: var(--branco);
+            letter-spacing: .01em;
+            line-height: 1.15;
+            position: relative;
+        }
+
+        header h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--bege);
+        }
+
+        .header-rule {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 1.2rem auto;
+            position: relative;
+        }
+
+        .header-rule span {
+            width: 50px;
+            height: 1px;
+            background: rgba(217,212,210,.35);
+            display: block;
+        }
+
+        .header-rule i {
+            font-style: normal;
+            font-size: .70rem;
+            color: rgba(217,212,210,.5);
+            letter-spacing: .2em;
+        }
+
+        header p.subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: rgba(217,212,210,.8);
+            position: relative;
+        }
+
+        /* ───── GRID ─────────────────────────────────────────── */
+        .grid-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 3.5rem 2rem 5rem;
+        }
+
+        .section-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: .9rem;
+            font-weight: 500;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--azul);
+            text-align: center;
+            margin-bottom: 2.8rem;
+            opacity: .8;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 70px;
+            justify-items: center;
+        }
+
+        /* ───── CARD ─────────────────────────────────────────── */
+        .card {
+            width: 250px;
+            aspect-ratio: 3 / 4;
+            background: var(--branco);
+            border-radius: 10px 10px 10px 10px;
+            box-shadow:
+                0 2px 10px rgba(115,65,61,.08),
+                0 1px 3px rgba(0,0,0,.06);
+            border: 1px solid rgba(119,138,140,.22);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition:
+                transform .25s cubic-bezier(.34,1.56,.64,1),
+                box-shadow .25s ease;
+            animation: cardIn .5s cubic-bezier(.34,1.56,.64,1) both;
+        }
+
+        /* Top accent bar */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--azul), var(--musgo));
+            opacity: 0;
+            transition: opacity .25s;
+            z-index: 2;
+        }
+
+        .card:hover {
+            transform: translateY(-11px) scale(1.03);
+            box-shadow:
+                0 22px 44px rgba(115,65,61,.14),
+                0 4px 14px rgba(0,0,0,.08);
+        }
+
+        .card:hover::before { opacity: 1; }
+        .card:active { transform: scale(.97); }
+
+        .card-photo {
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle vignette on image */
+        .card-photo::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 45%;
+            background: linear-gradient(to top, rgba(47,47,47,.15), transparent);
+            pointer-events: none;
+        }
+
+        .card-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s cubic-bezier(.25,1,.5,1), filter .3s;
+            filter: saturate(.88) contrast(1.03);
+        }
+
+        .card:hover .card-photo img {
+            transform: scale(1.08);
+            filter: saturate(1.05) contrast(1.03);
+        }
+
+        .card-footer {
+            flex-shrink: 0;
+            padding: 12px 10px 14px;
+            text-align: center;
+            background: var(--branco);
+            border-top: 1px solid rgba(119,138,140,.14);
+        }
+
+        .card-footer h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--cinza);
+            letter-spacing: .01em;
+            line-height: 1.2;
+        }
+
+        .card-role-tag {
+            font-family: 'Raleway', sans-serif;
+            font-size: .6rem;
+            font-weight: 500;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--azul);
+            margin-top: 4px;
+        }
+
+        /* ───── CARD CENTRAL ─────────────────────────────────── */
+        .card.central {
+            border-color: rgba(115,65,61,.3);
+            box-shadow:
+                0 4px 18px rgba(115,65,61,.16),
+                0 1px 4px rgba(0,0,0,.08);
+        }
+
+        .card.central::before {
+            background: linear-gradient(90deg, var(--vinho), var(--vermelho));
+            opacity: 1;
+        }
+
+        .card.central .card-footer {
+            background: var(--vinho);
+            border-top-color: var(--vinho-escuro);
+        }
+
+        .card.central .card-footer h3 {
+            color: var(--branco);
+        }
+
+        .card.central .card-role-tag {
+            color: rgba(217,212,210,.75);
+        }
+
+        /* ───── POPUP OVERLAY ────────────────────────────────── */
+        .popup-bg {
+            position: fixed;
+            z-index: 98;
+            inset: 0;
+            background: rgba(47,47,47,.58);
+            backdrop-filter: blur(7px) saturate(.75);
+            -webkit-backdrop-filter: blur(7px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .45s ease, visibility .45s ease;
+        }
+        .popup-bg.active { opacity: 1; visibility: visible; }
+
+        /* ───── POPUP ────────────────────────────────────────── */
+        .popup {
+            position: fixed;
+            background: var(--branco);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: none;
+            transition:
+                top    .55s cubic-bezier(.25,1,.3,1),
+                left   .55s cubic-bezier(.25,1,.3,1),
+                width  .55s cubic-bezier(.25,1,.3,1),
+                height .55s cubic-bezier(.25,1,.3,1),
+                transform .55s cubic-bezier(.25,1,.3,1),
+                box-shadow .55s ease;
+        }
+
+        .popup.active {
+            top:    50% !important;
+            left:   50% !important;
+            width:  min(1200px, 98vw) !important;
+            height: min(850px, 96vh) !important;
+            transform: translate(-50%, -50%) !important;
+            box-shadow:
+                0 36px 90px rgba(47,47,47,.3),
+                0 8px 28px rgba(115,65,61,.14);
+        }
+
+        /* Image panel */
+        .popup-left {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--cinza);
+            position: relative;
+            transition: width .55s cubic-bezier(.25,1,.3,1);
+        }
+
+        .popup.active .popup-left { width: 42%; }
+
+        .popup-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: saturate(.9) contrast(1.02);
+        }
+
+        .popup-left::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(160deg,
+                rgba(115,65,61,.12) 0%,
+                transparent 45%,
+                rgba(47,47,47,.1) 100%);
+            pointer-events: none;
+        }
+
+        /* Text panel */
+        .popup-right {
+            flex: 1;
+            padding: 48px 50px 44px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            opacity: 0;
+            overflow-y: auto;
+            background: var(--branco);
+            transition: opacity .3s ease .2s;
+        }
+
+        .popup.active .popup-right { opacity: 1; }
+
+        .popup-eyebrow {
+            font-family: 'Raleway', sans-serif;
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--azul);
+            margin-bottom: .65rem;
+        }
+
+        .popup h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.7rem, 2.6vw, 2.5rem);
+            font-weight: 700;
+            color: var(--vinho);
+            line-height: 1.1;
+        }
+
+        .popup h2 em {
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .popup-rule {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 1rem 0 1.15rem;
+        }
+
+        .popup-rule span:first-child {
+            width: 36px; height: 2px;
+            background: linear-gradient(90deg, var(--vinho), var(--azul));
+            display: block;
+        }
+
+        .popup-rule span:last-child {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--musgo);
+            display: block;
+        }
+
+        .popup p.desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            line-height: 1.78;
+            color: #313131;
+            font-weight: 300;
+        }
+
+        /* Close button */
+        .popup-close-btn {
+            position: absolute;
+            top: 14px; right: 16px;
+            width: 30px; height: 30px;
+            background: none;
+            border: 1px solid rgba(119,138,140,.28);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: .85rem;
+            color: var(--azul);
+            cursor: pointer;
+            transition: background .2s, color .2s, transform .25s, border-color .2s;
+            line-height: 1;
+        }
+
+        .popup-close-btn:hover {
+            background: var(--vinho);
+            color: var(--branco);
+            border-color: var(--vinho);
+            transform: rotate(90deg);
+        }
+
+        /* ───── FOOTER ───────────────────────────────────────── */
+        .page-footer {
+            text-align: center;
+            padding: 1.4rem 1rem 2.5rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: .7rem;
+            font-weight: 400;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: #354446;
+            opacity: .65;
+        }
+
+        /* ───── ENTRANCE ANIMATION ───────────────────────────── */
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(22px) scale(.96); }
+            to   { opacity: 1; transform: translateY(0)  scale(1); }
+        }
+
+        .cards-grid .card:nth-child(1)  { animation-delay: .04s; }
+        .cards-grid .card:nth-child(2)  { animation-delay: .09s; }
+        .cards-grid .card:nth-child(3)  { animation-delay: .14s; }
+        .cards-grid .card:nth-child(4)  { animation-delay: .19s; }
+        .cards-grid .card:nth-child(5)  { animation-delay: .24s; }
+        .cards-grid .card:nth-child(6)  { animation-delay: .29s; }
+        .cards-grid .card:nth-child(7)  { animation-delay: .34s; }
+        .cards-grid .card:nth-child(8)  { animation-delay: .39s; }
+        .cards-grid .card:nth-child(9)  { animation-delay: .44s; }
+        .cards-grid .card:nth-child(10) { animation-delay: .49s; }
+
+        /* ───── RESPONSIVE ───────────────────────────────────── */
+        @media (max-width: 960px) {
+            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 22px; }
+            .card { width: 155px; }
+        }
+
+        @media (max-width: 640px) {
+            .popup.active {
+                flex-direction: column;
+                width: 90vw !important;
+                height: 82vh !important;
+            }
+            .popup.active .popup-left {
+                width: 100%;
+                height: 44%;
+                flex-shrink: 0;
+            }
+            .popup-right {
+                padding: 22px 24px 24px;
+            }
+            header { padding: 2.5rem 1.2rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <p class="header-eyebrow">Projeto Portinari · Correspondências &amp; Documentos</p>
+        <h1>Pessoas-Chave da <em>Rede de Portinari</em></h1>
+        <div class="header-rule">
+            <span></span><i>✦</i><span></span>
+        </div>
+        <p class="subtitle">Os interlocutores que moldaram a trajetória de um dos maiores pintores do Brasil</p>
+    </header>
+
+    <div class="grid-container">
+        <p class="section-label">Clique em um perfil para ler a biografia completa</p>
+
+        <div class="cards-grid">
+
+            <!-- 1. Eugenio Luraghi -->
+            <div class="card"
+                 data-nome="Eugenio Luraghi"
+                 data-role="Escritor e Crítico de Arte · Milão"
+                 data-desc="Poeta, escritor e crítico de arte italiano, Eugenio Luraghi foi o grande embaixador de Portinari na Europa. Diretor da Olivetti e figura de prestígio no mundo intelectual milanês, era homem de letras e de redes. Organizou a monografia de Portinari pela Editora Mondadori em 1953 — uma das primeiras grandes obras sobre o pintor no exterior — e co-editou o álbum 'Israel: Disegni di Portinari' em 1955. Suas cartas a Portinari, redigidas em italiano e conservadas no Acervo do Projeto Portinari, revelam uma amizade afetiva e prática: ele comentava exposições, guardava telas em seu apartamento, acompanhava a saúde do amigo e, juntos, planejaram a grande exposição de 1963 no Palazzo Reale de Milão — que Portinari não viveu para ver. Sobre a arte do pintor, Luraghi escreveu em 1963: 'Chega-nos como um vento refrescante, mostrando que a grande veia latina não se esgotou, mas se enriqueceu com novos temas, ainda viva graças ao mérito de um filho de imigrantes.'">
+                <div class="card-photo"><img src="assets/EugenioLuragui.jpg" alt="Eugenio Luraghi"></div>
+                <div class="card-footer">
+                    <h3>Eugenio Luraghi</h3>
+                    <p class="card-role-tag">Crítico · Milão</p>
+                </div>
+            </div>
+
+            <!-- 2. Jayme Barros -->
+            <div class="card"
+                 data-nome="Jayme Barros"
+                 data-role="Diplomata e Jornalista"
+                 data-desc="Diplomata e jornalista brasileiro, Jayme Barros foi um dos amigos mais leais e presentes na vida de Portinari, especialmente nos anos de crescente projeção internacional do artista. Transitando entre o jornalismo e os postos diplomáticos, Barros atuou como interlocutor privilegiado em questões que iam de protocolos consulares a negociações com museus no exterior. Suas correspondências com Portinari combinam afeto pessoal e praticidade: organizava vistos, articulava contatos com colecionadores e funcionários do governo, e mantinha o pintor informado sobre o ambiente cultural e político de outros países. A amizade entre os dois era marcada por uma cumplicidade rara — Barros compreendia tanto as necessidades do homem quanto as ambições do artista. Sua rede de relações diplomáticas foi decisiva para abrir portas em contextos onde a influência artística, por si só, não bastaria.">
+                <div class="card-photo"><img src="assets/JaymeBarros.jpeg" alt="Jayme Barros"></div>
+                <div class="card-footer">
+                    <h3>Jayme Barros</h3>
+                    <p class="card-role-tag">Diplomata · Jornalista</p>
+                </div>
+            </div>
+
+            <!-- 3. Gustavo Capanema -->
+            <div class="card"
+                 data-nome="Gustavo Capanema"
+                 data-role="Ministro da Educação · 1934–1945"
+                 data-desc="Nascido em Pitangui, Minas Gerais, em 1900, Gustavo Capanema Filho foi o ministro da Educação e Saúde que mais tempo permaneceu no cargo em toda a história do Brasil: onze anos contínuos, de 1934 a 1945, durante o Estado Novo de Vargas. Cercado por uma constelação de intelectuais — Carlos Drummond de Andrade (seu chefe de gabinete), Mário de Andrade, Heitor Villa-Lobos, Cecília Meireles e Portinari —, Capanema foi o maior mecenas estatal do modernismo brasileiro. Foi ele quem encomendou a Portinari os afrescos dos Ciclos Econômicos e os icônicos painéis de azulejos 'Conchas e Hipocampos', no prédio do Ministério projetado por Lúcio Costa, Oscar Niemeyer e Le Corbusier. O edifício, tombado pelo IPHAN em 1948 e hoje chamado Palácio Gustavo Capanema, é considerado um marco da arquitetura moderna mundial. Sob sua gestão também foram criados o SPHAN e a Universidade do Brasil, atual UFRJ.">
+                <div class="card-photo"><img src="assets/GustavoCapenema.jpg" alt="Gustavo Capanema"></div>
+                <div class="card-footer">
+                    <h3>Gustavo Capanema</h3>
+                    <p class="card-role-tag">Ministro · 1934–1945</p>
+                </div>
+            </div>
+
+            <!-- 4. João Cândido -->
+            <div class="card"
+                 data-nome="João Cândido Portinari"
+                 data-role="Filho · Fundador do Projeto Portinari"
+                 data-desc="Nascido no Rio de Janeiro em 1939, João Cândido é o único filho de Cândido e Maria Portinari. Matemático formado na França e doutor em Engenharia de Telecomunicações pelo MIT (Massachusetts Institute of Technology), passou a primeira fase da vida adulta consciente da grandeza do pai, mas distante dela — o peso do sobrenome o sufocava. Só aos quarenta anos, percebendo que a memória de Portinari se desfazia com a morte de seus contemporâneos, decidiu consagrar a vida ao legado paterno. Em 1979, dentro da PUC-Rio, fundou o Projeto Portinari — o primeiro catálogo raisonné completo de um artista em toda a América Latina, com mais de 5.400 obras catalogadas. Em 2004 publicou o monumental Catálogo Raisonné, vencendo o Prêmio Jabuti em 2005. Também articulou o retorno dos painéis 'Guerra e Paz' ao Brasil em 2010. Sobre sua missão, escreveu ao pai: 'É como brasileiro que me sinto no dever de trabalhar para que todos possamos nos reencontrar com tua obra e, através dela, com nós mesmos.'">
+                <div class="card-photo"><img src="assets/JoaoCandido.jpg" alt="João Cândido"></div>
+                <div class="card-footer">
+                    <h3>João Cândido</h3>
+                    <p class="card-role-tag">Filho · Projeto Portinari</p>
+                </div>
+            </div>
+
+            <!-- 5. Cândido Portinari (CENTRAL) -->
+            <div class="card central"
+                 data-nome="Cândido Portinari"
+                 data-role="Pintor · Brodowski, 1903 – Rio de Janeiro, 1962"
+                 data-desc="Candido Torquato Portinari nasceu em 30 de dezembro de 1903 numa fazenda de café em Brodowski, São Paulo, filho de imigrantes italianos. Com 15 anos partiu para o Rio de Janeiro, estudou na Escola Nacional de Belas Artes e, em 1929, conquistou o Prêmio Viagem ao Exterior — indo a Paris, onde conviveu com a vanguarda europeia e absorveu influências de Giotto, Piero della Francesca e Picasso. De volta ao Brasil, desenvolveu uma linguagem única: figuras deformadas e monumentais que retratam o trabalhador, o sertanejo, a criança, o migrante. Filiou-se ao PCB, candidatou-se a deputado em 1945 e a senador em 1947, exilando-se no Uruguai entre 1947 e 1948. Pintou os murais da Pampulha com Niemeyer, os afrescos da Biblioteca do Congresso em Washington, e os painéis 'Guerra e Paz' doados à ONU em 1956 — considerados pelo secretário-geral Dag Hammarskjöld 'a obra monumental mais importante já doada à entidade'. Seu legado soma mais de 5.000 obras. Faleceu em 6 de fevereiro de 1962, vítima de intoxicação por chumbo e arsênio das tintas que usou durante décadas.">
+                <div class="card-photo"><img src="assets/CandidoPortinari.jpg" alt="Cândido Portinari"></div>
+                <div class="card-footer">
+                    <h3>Cândido Portinari</h3>
+                    <p class="card-role-tag">Pintor · 1903–1962</p>
+                </div>
+            </div>
+
+            <!-- 6. Maria Portinari (CENTRAL) -->
+            <div class="card central"
+                 data-nome="Maria Portinari"
+                 data-role="Esposa e Companheira de Vida"
+                 data-desc="Maria Victoria Martinelli Portinari, carinhosamente chamada Marysia, nasceu no Uruguai e conheceu Portinari durante a estada do pintor em Paris. Casaram-se em 1930 e a união durou até a morte do artista, em 1962. Marysia foi muito mais do que esposa: foi âncora emocional, gestora do lar e guardiã da memória viva do artista. As correspondências do Acervo do Projeto Portinari registram sua presença constante — cartas eram frequentemente endereçadas a ela ao lado das de Portinari, e amigos como Pietro Bardi descrevem sua correspondência com o casal como indissociável. Sua figura inspirou dezenas de retratos e aparece em obras de diversas fases do pintor. Após a morte de Portinari, dedicou-se a preservar pinturas, esboços e documentos — base do acervo que seu filho João Cândido transformaria, em 1979, no Projeto Portinari. Sua inscrição no verso de uma obra guarda a simplicidade de uma vida inteira entregue à arte do companheiro: 'desenho original de Candido Portinari, Maria Victoria Portinari.'">
+                <div class="card-photo"><img src="assets/MariaPortinari.jpeg" alt="Maria Portinari"></div>
+                <div class="card-footer">
+                    <h3>Maria Portinari</h3>
+                    <p class="card-role-tag">Esposa · Marysia</p>
+                </div>
+            </div>
+
+            <!-- 7. Mário de Andrade -->
+            <div class="card"
+                 data-nome="Mário de Andrade"
+                 data-role="Escritor · Modernismo Brasileiro"
+                 data-desc="Um dos fundadores e maiores pilares do modernismo brasileiro, Mário de Andrade (1893–1945) foi co-organizador da Semana de Arte Moderna de 1922 em São Paulo, autor de 'Macunaíma' e precursor dos estudos de folclore e cultura popular no Brasil. Sua amizade com Portinari nasceu do projeto compartilhado de construir uma identidade artística genuinamente brasileira — avessa ao academicismo europeu e atenta às vozes do povo. Mário trabalhou como consultor do Ministério Capanema e exerceu influência direta na escolha dos temas dos murais do Palácio: ele orientou Portinari a ler 'Os Sertões' de Euclides da Cunha para retratar o gaúcho, o jangadeiro e o sertanejo com profundidade. Suas cartas são densas, teóricas e afetuosas: os dois debatiam a função social da arte, a relação entre forma e conteúdo, e os caminhos de uma pintura que fosse ao mesmo tempo moderna e popular. Mário morreu precocemente em 1945, mas deixou em Portinari uma influência que atravessa toda a obra madura do pintor.">
+                <div class="card-photo"><img src="assets/marioAndrade.png" alt="Mario de Andrade"></div>
+                <div class="card-footer">
+                    <h3>Mário de Andrade</h3>
+                    <p class="card-role-tag">Escritor · Modernismo</p>
+                </div>
+            </div>
+
+            <!-- 8. Carlos Drummond -->
+            <div class="card"
+                 data-nome="Carlos Drummond de Andrade"
+                 data-role="Poeta · Amigo íntimo"
+                 data-desc="Considerado o maior poeta da língua portuguesa do século XX, Carlos Drummond de Andrade (1902–1987) foi uma das presenças mais constantes e queridas na vida de Portinari. Ambos eram mineiros de origem humilde, sensíveis às questões sociais do Brasil, e essa afinidade profunda alimentou uma amizade que durou décadas. Como chefe de gabinete de Gustavo Capanema, Drummond esteve no centro das decisões que levaram Portinari a decorar o Ministério da Educação — foi ele quem convenceu o ministro a rejeitar o projeto neoclássico e contratar Lúcio Costa. Após a morte do pintor, Drummond escreveu os 21 poemas-glosa que acompanham as ilustrações de Portinari para 'Dom Quixote', publicadas em 1972 em edição-folio de grande formato — obra póstuma que une dois gênios. Havia entre os dois não apenas admiração mútua, mas uma cumplicidade rara: a certeza de que arte, para ser grande, precisa carregar a dor e a beleza do país que a gerou.">
+                <div class="card-photo"><img src="assets/CarlosDrummond.png" alt="Carlos Drummond"></div>
+                <div class="card-footer">
+                    <h3>Carlos Drummond</h3>
+                    <p class="card-role-tag">Poeta · Amigo</p>
+                </div>
+            </div>
+
+            <!-- 9. Pietro Bardi -->
+            <div class="card"
+                 data-nome="Pietro Maria Bardi"
+                 data-role="Marchand · Co-fundador do MASP"
+                 data-desc="Pietro Maria Bardi (La Spezia, 1900 – São Paulo, 1999) foi jornalista, crítico de arte, historiador, marchand e colecionador que viveu 99 anos e deixou marca indelével na história da arte brasileira. Chegou ao Brasil em 1946 com sua esposa, a arquiteta Lina Bo Bardi, trazendo uma coleção de obras europeias. Numa exposição no Ministério da Educação conheceu Assis Chateaubriand e, juntos, fundaram o MASP em 1947 — museu que Bardi dirigiu pelos 45 anos seguintes. Sua relação com Portinari foi ao mesmo tempo de amizade sincera e de parceria estratégica: organizou a grande retrospectiva no MASP em 1948, para a qual redigiu o ensaio 'Portinari, um pintor popular', e voltou a expô-lo em 1970. Manteve correspondência regular com Portinari e Maria, e defendia o artista como o principal pintor social do Brasil. Sua visão de museu — democrático, educativo, aberto à arte popular — encontrava eco profundo na obra de Portinari. Publicou 50 livros ao longo da vida; o último, 'História do MASP', em 1992, aos 92 anos.">
+                <div class="card-photo"><img src="assets/PietroBardi.jpg" alt="Pietro Bardi"></div>
+                <div class="card-footer">
+                    <h3>Pietro Bardi</h3>
+                    <p class="card-role-tag">Marchand · MASP</p>
+                </div>
+            </div>
+
+            <!-- 10. Raul Bopp -->
+            <div class="card"
+                 data-nome="Raul Bopp"
+                 data-role="Poeta Modernista · Diplomata"
+                 data-desc="Raul Bopp (1898–1984) foi um dos nomes mais originais do modernismo brasileiro: poeta da floresta, diplomata itinerante e amigo fraternal de artistas e escritores de sua geração. É autor de 'Cobra Norato' (1931), poema mítico que mergulha na Amazônia com linguagem primitiva e surreal, obra central do movimento Antropofágico liderado por Oswald de Andrade. Como diplomata serviu em diversos países — o que lhe rendeu uma visão cosmopolita rara entre os modernistas —, e suas correspondências com Portinari refletem esse duplo mundo: discutiam a circulação da arte brasileira no exterior, o olhar dos estrangeiros sobre a pintura de Portinari e o papel que a cultura poderia desempenhar como instrumento diplomático e de afirmação nacional. Bopp admirava em Portinari exatamente o que praticava em seus versos — a capacidade de enraizar o universal no solo concreto e mítico do Brasil.">
+                <div class="card-photo"><img src="assets/RaulBopp.jpg" alt="Raul Bopp"></div>
+                <div class="card-footer">
+                    <h3>Raul Bopp</h3>
+                    <p class="card-role-tag">Poeta · Diplomata</p>
+                </div>
+            </div>
+
+        </div><!-- /.cards-grid -->
+    </div><!-- /.grid-container -->
+
+    <p class="page-footer">Acervo do Projeto Portinari &nbsp;·&nbsp; Correspondências &amp; Documentos</p>
+
+    <!-- Popup -->
+    <div class="popup-bg" id="popup-bg"></div>
+
+    <div class="popup" id="popup">
+        <div class="popup-left">
+            <img id="popup-img" src="" alt="">
+        </div>
+        <div class="popup-right">
+            <button class="popup-close-btn" id="close-popup" title="Fechar (Esc)">&#x2715;</button>
+            <p class="popup-eyebrow" id="popup-eyebrow"></p>
+            <h2 id="popup-title"></h2>
+            <div class="popup-rule"><span></span><span></span></div>
+            <p class="desc" id="popup-desc"></p>
+        </div>
+    </div>
+
+    <script>
+        const cards      = document.querySelectorAll('.card');
+        const popupBg    = document.getElementById('popup-bg');
+        const popup      = document.getElementById('popup');
+        const popupImg   = document.getElementById('popup-img');
+        const popupEyebrow = document.getElementById('popup-eyebrow');
+        const popupTitle = document.getElementById('popup-title');
+        const popupDesc  = document.getElementById('popup-desc');
+        const closeBtn   = document.getElementById('close-popup');
+        let activeCard   = null;
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                activeCard = card;
+                const rect = card.getBoundingClientRect();
+
+                // Position popup over card (FLIP start)
+                popup.style.top       = rect.top    + 'px';
+                popup.style.left      = rect.left   + 'px';
+                popup.style.width     = rect.width  + 'px';
+                popup.style.height    = rect.height + 'px';
+                popup.style.transform = 'none';
+
+                // Populate content
+                const imgEl = card.querySelector('.card-photo img');
+                popupImg.src            = imgEl ? imgEl.src : '';
+                popupImg.alt            = card.dataset.nome || '';
+                popupEyebrow.textContent = card.dataset.role || '';
+                popupTitle.textContent  = card.dataset.nome || '';
+                popupDesc.textContent   = card.dataset.desc || '';
+
+                // Show & trigger transition
+                popup.style.opacity    = '1';
+                popup.style.visibility = 'visible';
+                popupBg.classList.add('active');
+                void popup.offsetWidth;        // force reflow
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closePopup() {
+            if (!popup.classList.contains('active')) return;
+            popup.classList.remove('active');
+            popupBg.classList.remove('active');
+            document.body.style.overflow = '';
+            if (activeCard) {
+                const rect = activeCard.getBoundingClientRect();
+                popup.style.top       = rect.top    + 'px';
+                popup.style.left      = rect.left   + 'px';
+                popup.style.width     = rect.width  + 'px';
+                popup.style.height    = rect.height + 'px';
+                popup.style.transform = 'none';
+            }
+            setTimeout(() => {
+                popup.style.opacity    = '0';
+                popup.style.visibility = 'hidden';
+            }, 560);
+        }
+
+        closeBtn.addEventListener('click', closePopup);
+        popupBg.addEventListener('click', closePopup);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+    </script>
+</body>
+</html>

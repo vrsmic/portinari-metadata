@@ -94,6 +94,13 @@ O projeto conta com duas visualizações interativas principais, disponíveis on
 - Identificação de interlocutores centrais
 - Navegação interativa com física de grafos
 
+**3. Remetentes por Período Temporal** - Quem Mandou Mais cartas em certo(s) anos
+- Filtragem por período dos anos e resposta imediata da quantidade
+
+**4. Pessoas-Chave da Rede** - Descrição interativa
+- Página interativa
+- Resumo Biográfico dos principais nomes nas correspondências.
+
 As visualizações utilizam **Altair (Vega-Lite)** e **Pyvis/NetworkX**, com paleta de cores inspirada nas obras de Portinari.
 
 ## Paleta de Cores
@@ -103,6 +110,7 @@ O projeto utiliza uma paleta personalizada inspirada nas obras de Portinari:
 - Dourado: `#BF8821`
 - Vermelho: `#A62014`
 - Vinho: `#59150E`
+- Bege: `#D9C2AD`
 
 ## Fonte dos Dados
 
